@@ -170,10 +170,12 @@ function updateCircles() {
         x: otherCircle.pos.x - curCircle.pos.x,
         y: otherCircle.pos.y - curCircle.pos.y,
       };
-
+      if (!delta.x || !delta.y) {
+        continue;
+      }
       const dist = Math.sqrt(delta.x * delta.x + delta.y * delta.y);
 
-      const force = (otherCircle.mass * SPEED) / MAX_MASS;
+      const force = (curCircle.mass * SPEED) / MAX_MASS;
       const dirX = delta.x / Math.abs(delta.x);
       const dirY = delta.y / Math.abs(delta.y);
 
